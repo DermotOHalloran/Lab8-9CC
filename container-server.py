@@ -56,8 +56,17 @@ def images_index():
     
     Complete the code below generating a valid response. 
     """
+    curl -s -X GET -H 'Accept: application/json' http://localhost:8080/images | python -mjson.tool
+    curl -s -X GET -H 'Accept: application/json' http://localhost:8080/images?state=running | python -mjson.tool
+
+    """
+    if request.args.get('state') == 'running':
+        output = docker('ps')
+    else:
+        output = docker('ps', '-a')
+    resp = json.dumps(docker_ps_to_array(output))
     
-    resp = ''
+    
     return Response(response=resp, mimetype="application/json")
 
 @app.route('/containers/<id>', methods=['GET'])
