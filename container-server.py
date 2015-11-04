@@ -75,9 +75,16 @@ def containers_show(id):
     Inspect specific container
 
     """
+    curl -s -X GET -H 'Accept: application/json' http://localhost:8080/containers/id
+    | python -mjson.tool
+    
 
-    resp = ''
-
+    """
+    if request.args.get('state') == 'running':
+        output = docker('ps')
+    else:
+        output = docker('ps', '-a')
+    resp = json.dumps(docker_ps_to_array(output))
     return Response(response=resp, mimetype="application/json")
 
 @app.route('/containers/<id>/logs', methods=['GET'])
