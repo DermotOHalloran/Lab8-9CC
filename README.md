@@ -2,6 +2,7 @@
 Cloud Computing Labs 8 &amp; 9, DT228/3
 
 Part A Q2
+
 a. How	many	images	are	there? 12
 
 b. How	many	containers	are	there? 13
