@@ -10,3 +10,9 @@ b. How	many	containers	are	there? 13
 c. How	many	containers	are	running? 1 
 
 d. What	is	the	imageID	of	the	docker/whalesay	image fb43412fc77
+
+e.
+
+f. docker build -t ubuntu
+
+g.
