@@ -22,13 +22,13 @@ echo Dump specific container logs 7
 sudo curl -s -X GET -H 'Accept:application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46/logs | python -mjson.tool
 
 echo Delete a specific image 8
-#curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 | python -mjson.tool
+curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 | python -mjson.tool
 
 echo Delete all images 9
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images
 
 echo Delete a specific container - must be already stopped/killed 10 
-#curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 | python -mjson.tool
+curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 | python -mjson.tool
 
 echo Force remove all containers - dangrous! 11
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containersDel | python -mjson.tool
