@@ -31,7 +31,7 @@ def containers_index():
     """
     List all containers
  
-    curl -s -X GET -H 'Accept: application/json' ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.toolv
+    curl -s -X GET -H 'Accept: application/json' ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
     curl -s -X GET -H 'Accept: application/json' ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
     """
     if request.args.get('state') == 'running':
