@@ -1,24 +1,37 @@
 echo start
+
 echo Test Connection
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080 | python -mjson.tool
+
 echo List all containers
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
+
 echo List all running containers
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
+
 echo List all images
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
+
+echo List all running images
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
+
 echo Inspect specific container
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool 
+
 echo Dump specific container logs
 curl -s -X GET -H 'Accept:application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46/logs | python -mjson.tool
+
 echo Delete a specific image
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 | python -mjson.tool
+
 echo Delete a specific container - must be already stopped/killed
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 | python -mjson.tool
+
 echo Force remove all containers - dangrous!
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containersDel | python -mjson.tool
+
 echo Force remove all images - dangrous!
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/imagesDel | python -mjson.tool    
+
 echo end
 
