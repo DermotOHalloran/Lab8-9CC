@@ -1,37 +1,47 @@
 echo start
 
-echo Test Connection
+echo Test Connection 1
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080 | python -mjson.tool
 
-echo List all containers
+echo List all containers 2
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
 
-echo List all running containers
+echo List all running containers 3 
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
 
-echo List all images
+echo Inspect specific container 4 
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
 
-echo List all running images
+echo List all images 5
+curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
+
+echo List all running images 6
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
-
-echo Inspect specific container
-curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool 
-
-echo Dump specific container logs
+ 
+echo Dump specific container logs 7
 curl -s -X GET -H 'Accept:application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46/logs | python -mjson.tool
 
-echo Delete a specific image
+echo Delete a specific image 8
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 | python -mjson.tool
 
-echo Delete a specific container - must be already stopped/killed
+echo Delete a specific image 9
+#curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images
+
+echo Delete a specific container - must be already stopped/killed 10 
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 | python -mjson.tool
 
-echo Force remove all containers - dangrous!
+echo Force remove all containers - dangrous! 11
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containersDel | python -mjson.tool
 
-echo Force remove all images - dangrous!
+echo Force remove all images - dangrous! 12
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/imagesDel | python -mjson.tool    
+
+echo Stop/Start Containers 13
+curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "running"}'
+curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "stopped"}'
+
+echo Update image tag 14
+curl -s -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 -d '{"tag": "test:1.0"}'
 
 echo end
 
