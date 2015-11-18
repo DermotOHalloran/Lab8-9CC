@@ -1,7 +1,7 @@
 echo start
 
 echo Test Connection 1
-curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080 | python -mjson.tool
+curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080
 
 echo List all containers 2
 curl -s -X GET -H 'Accept: application/json' http://ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers | python -mjson.tool
@@ -19,7 +19,7 @@ echo List all running images 6
 curl -s -X GET -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers?state=running | python -mjson.tool
  
 echo Dump specific container logs 7
-curl -s -X GET -H 'Accept:application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46/logs | python -mjson.tool
+sudo curl -s -X GET -H 'Accept:application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46/logs | python -mjson.tool
 
 echo Delete a specific image 8
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 | python -mjson.tool
@@ -37,8 +37,8 @@ echo Force remove all images - dangrous! 12
 #curl -s -X DELETE -H 'Accept: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/imagesDel | python -mjson.tool    
 
 echo Stop/Start Containers 13
-#curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "running"}'
-#curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "stopped"}'
+curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "running"}'
+curl -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/containers/6386e5bada46 -d '{"state": "stopped"}'
 
 echo Update image tag 14
 curl -s -X PATCH -H 'Content-Type: application/json' http://ubuntu@ec2-52-30-47-228.eu-west-1.compute.amazonaws.com:8080/images/7e31e9ed3ab5 -d '{"tag": "test:1.0"}'
